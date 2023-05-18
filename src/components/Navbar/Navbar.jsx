@@ -1,16 +1,17 @@
 import React from "react";
-import NavbarItem from "./NavbarItem";
 import CartWidget from "./CartWidget";
+import {NavLink} from 'react-router-dom';
 
-const Navbar = () => {
-  const items = ["Inicio", "Productos", "Sobre Nosotros", "Contacto"];
+const Navbar = (props) => {
+
+  const {navbar_items} = props
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-info">
       <div className="container-fluid">
-        <p className="navbar-brand" href="#">
+        <NavLink to='/' className={"navbar-brand nav-link"} href="#">
           DE LA USA
-        </p>
+        </NavLink>
         <button
           className="navbar-toggler"
           type="button"
@@ -24,8 +25,10 @@ const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
-            {items.map?.((texto) => (
-              <NavbarItem key={texto} texto={texto} />
+            {navbar_items.map?.(({path,name}, index) => (
+              <li key={index}>
+                <NavLink className={'nav-link'} to={path}>{name}</NavLink>
+              </li>
             ))}
             <CartWidget />
             <li className="nav-item">
